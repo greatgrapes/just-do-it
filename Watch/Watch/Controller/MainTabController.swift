@@ -19,23 +19,22 @@ final class MainTabController: UITabBarController {
     
     func configureViewControllers() {
         
-        let worldClock = templateNavigationController(unseletcedImage: UIImage(systemName: "globe") ?? UIImage(), selectedImage: UIImage(systemName: "globe") ?? UIImage(), rootViewController: WorldClockViewController())
+        let worldClock = templateNavigationController(tabBarTitle: "세계 시계", tabBarIcon: UIImage(systemName: "globe") ?? UIImage(), rootViewController: WorldClockViewController())
         
-        let alarm = templateNavigationController(unseletcedImage: UIImage(systemName: "alarm.fill") ?? UIImage(), selectedImage: UIImage(systemName: "alarm.fill") ?? UIImage(), rootViewController: AlarmViewController())
+        let alarm = templateNavigationController(tabBarTitle: "알람", tabBarIcon: UIImage(systemName: "alarm.fill") ?? UIImage(), rootViewController: AlarmViewController())
         
-        let stopWatch = templateNavigationController(unseletcedImage: UIImage(systemName: "stopwatch.fill") ?? UIImage(), selectedImage: UIImage(systemName: "stopwatch.fill") ?? UIImage(), rootViewController: StopWatchViewController())
+        let stopWatch = templateNavigationController(tabBarTitle: "스톱워치", tabBarIcon: UIImage(systemName: "stopwatch.fill") ?? UIImage(), rootViewController: StopWatchViewController())
         
-        let timer = templateNavigationController(unseletcedImage: UIImage(systemName: "gauge.with.needle") ?? UIImage(), selectedImage: UIImage(systemName: "gauge.with.needle") ?? UIImage(), rootViewController: TimerViewController())
+        let timer = templateNavigationController(tabBarTitle: "타이머",tabBarIcon: UIImage(systemName: "gauge.with.needle") ?? UIImage(), rootViewController: TimerViewController())
         
         viewControllers = [worldClock, alarm, stopWatch, timer]
     }
     
     
-    func templateNavigationController(unseletcedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController) -> UINavigationController {
+    func templateNavigationController(tabBarTitle: String, tabBarIcon: UIImage, rootViewController: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: rootViewController)
-        nav.tabBarItem.image = unseletcedImage
-        nav.tabBarItem.selectedImage = selectedImage
-        
+        nav.tabBarItem.title = tabBarTitle
+        nav.tabBarItem.image = tabBarIcon
         nav.navigationBar.tintColor = .black
         return nav
     }
@@ -44,20 +43,12 @@ final class MainTabController: UITabBarController {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.shadowColor = UIColor.clear
-        appearance.backgroundColor = .darkGray
+        appearance.backgroundColor = .clear
         appearance.backgroundColor?.withAlphaComponent(0.8)
         tabBar.standardAppearance = appearance
         if #available(iOS 15.0, *) {
                 tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         }
         tabBar.tintColor = .orange
-        tabBar.layer.masksToBounds = false
-        tabBar.layer.shadowColor = UIColor.black.cgColor
-        tabBar.layer.shadowOpacity = 0.8
-        tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
-        tabBar.layer.shadowRadius = 6
     }
-    
-    
-    
 }
