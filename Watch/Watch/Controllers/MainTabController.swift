@@ -20,14 +20,13 @@ final class MainTabController: UITabBarController {
     func configureViewControllers() {
         
         let worldClock = templateNavigationController(tabBarTitle: "세계 시계", tabBarIcon: UIImage(systemName: "globe") ?? UIImage(), rootViewController: WorldClockViewController())
-        
         let alarm = templateNavigationController(tabBarTitle: "알람", tabBarIcon: UIImage(systemName: "alarm.fill") ?? UIImage(), rootViewController: AlarmViewController())
-        
         let stopWatch = templateNavigationController(tabBarTitle: "스톱워치", tabBarIcon: UIImage(systemName: "stopwatch.fill") ?? UIImage(), rootViewController: StopWatchViewController())
-        
         let timer = templateNavigationController(tabBarTitle: "타이머",tabBarIcon: UIImage(systemName: "gauge.with.needle") ?? UIImage(), rootViewController: TimerViewController())
         
         viewControllers = [worldClock, alarm, stopWatch, timer]
+        
+        self.selectedIndex = 0
     }
     
     

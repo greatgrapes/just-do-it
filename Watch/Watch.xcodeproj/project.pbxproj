@@ -16,6 +16,10 @@
 		4CDE74262D5F5A7100F2AFCF /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE74252D5F5A6B00F2AFCF /* AlarmViewController.swift */; };
 		4CDE74282D5F5A8200F2AFCF /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE74272D5F5A7700F2AFCF /* StopWatchViewController.swift */; };
 		4CDE742A2D5F5A9100F2AFCF /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE74292D5F5A8E00F2AFCF /* TimerViewController.swift */; };
+		4CDE742D2D5F8E2900F2AFCF /* WorldClockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE742C2D5F8E1E00F2AFCF /* WorldClockTableViewCell.swift */; };
+		4CDE74312D5FA06E00F2AFCF /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE74302D5FA06B00F2AFCF /* Region.swift */; };
+		4CDE74332D5FA0DD00F2AFCF /* WorldClockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE74322D5FA0DC00F2AFCF /* WorldClockViewModel.swift */; };
+		4CDE74362D5FA19C00F2AFCF /* RegionPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE74352D5FA19B00F2AFCF /* RegionPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		4CDE74252D5F5A6B00F2AFCF /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		4CDE74272D5F5A7700F2AFCF /* StopWatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
 		4CDE74292D5F5A8E00F2AFCF /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		4CDE742C2D5F8E1E00F2AFCF /* WorldClockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockTableViewCell.swift; sourceTree = "<group>"; };
+		4CDE74302D5FA06B00F2AFCF /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		4CDE74322D5FA0DC00F2AFCF /* WorldClockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockViewModel.swift; sourceTree = "<group>"; };
+		4CDE74352D5FA19B00F2AFCF /* RegionPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +70,10 @@
 		4CDE74192D5F585200F2AFCF /* Watch */ = {
 			isa = PBXGroup;
 			children = (
-				4CDE74202D5F593000F2AFCF /* Controller */,
+				4CDE742E2D5F9B1900F2AFCF /* Model */,
+				4CDE742B2D5F8E1800F2AFCF /* View */,
+				4CDE74202D5F593000F2AFCF /* ViewModel */,
+				4CDE742F2D5F9C5A00F2AFCF /* Controllers */,
 				4CDE74122D5F585200F2AFCF /* AppDelegate.swift */,
 				4CDE74172D5F585200F2AFCF /* SceneDelegate.swift */,
 				4CDE74162D5F585200F2AFCF /* LaunchScreen.storyboard */,
@@ -72,16 +83,49 @@
 			path = Watch;
 			sourceTree = "<group>";
 		};
-		4CDE74202D5F593000F2AFCF /* Controller */ = {
+		4CDE74202D5F593000F2AFCF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4CDE74322D5FA0DC00F2AFCF /* WorldClockViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4CDE742B2D5F8E1800F2AFCF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4CDE742C2D5F8E1E00F2AFCF /* WorldClockTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4CDE742E2D5F9B1900F2AFCF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4CDE74302D5FA06B00F2AFCF /* Region.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4CDE742F2D5F9C5A00F2AFCF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				4CDE74212D5F593F00F2AFCF /* MainTabController.swift */,
-				4CDE74232D5F5A2400F2AFCF /* WorldClockViewController.swift */,
+				4CDE74342D5FA18300F2AFCF /* WorldClock */,
 				4CDE74252D5F5A6B00F2AFCF /* AlarmViewController.swift */,
 				4CDE74272D5F5A7700F2AFCF /* StopWatchViewController.swift */,
 				4CDE74292D5F5A8E00F2AFCF /* TimerViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4CDE74342D5FA18300F2AFCF /* WorldClock */ = {
+			isa = PBXGroup;
+			children = (
+				4CDE74232D5F5A2400F2AFCF /* WorldClockViewController.swift */,
+				4CDE74352D5FA19B00F2AFCF /* RegionPickerViewController.swift */,
+			);
+			path = WorldClock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,13 +201,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CDE74312D5FA06E00F2AFCF /* Region.swift in Sources */,
 				4CDE741D2D5F585200F2AFCF /* AppDelegate.swift in Sources */,
 				4CDE74282D5F5A8200F2AFCF /* StopWatchViewController.swift in Sources */,
 				4CDE74242D5F5A2400F2AFCF /* WorldClockViewController.swift in Sources */,
 				4CDE74262D5F5A7100F2AFCF /* AlarmViewController.swift in Sources */,
 				4CDE742A2D5F5A9100F2AFCF /* TimerViewController.swift in Sources */,
+				4CDE74332D5FA0DD00F2AFCF /* WorldClockViewModel.swift in Sources */,
+				4CDE74362D5FA19C00F2AFCF /* RegionPickerViewController.swift in Sources */,
 				4CDE741E2D5F585200F2AFCF /* SceneDelegate.swift in Sources */,
 				4CDE74222D5F594000F2AFCF /* MainTabController.swift in Sources */,
+				4CDE742D2D5F8E2900F2AFCF /* WorldClockTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
