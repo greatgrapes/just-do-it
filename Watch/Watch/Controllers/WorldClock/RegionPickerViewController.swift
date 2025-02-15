@@ -9,53 +9,37 @@ import UIKit
 
 class RegionPickerViewController: UIViewController {
     
-    private let viewModel: WorldClockViewModel
+    //MARK: - Properties
+
     
-    private let regions = [
-        Region(name: "서울", timezone: "GMT+9"),
-        Region(name: "뉴욕", timezone: "GMT-5"),
-        Region(name: "런던", timezone: "GMT+0")
-    ]
 
-    init(viewModel: WorldClockViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        setupUI()
+        view.backgroundColor = .darkGray
+        makeSearchBar()
     }
 
-    private func setupUI() {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
-
-        regions.forEach { region in
-            let button = UIButton(type: .system)
-            button.setTitle(region.name, for: .normal)
-            button.addTarget(self, action: #selector(regionSelected(_:)), for: .touchUpInside)
-            button.tag = regions.firstIndex(where: { $0.name == region.name }) ?? 0
-            stackView.addArrangedSubview(button)
-        }
-
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+    private func makeSearchBar() {
+        // SearchBar 핵심구현부
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "검색"
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        // 색상 설정
+        searchController.searchBar.tintColor = .orange
+        // 취소키설정
+        searchController.searchBar.setValue("취소", forKey: "CancelButtonText")
+        searchController.searchBar.showsCancelButton = true
+      
+        // nav설정
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.searchController = searchController
+     
+        // Title 및 Title 색상 설정
+        self.navigationItem.title = "도시 선택"
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
-
-    @objc private func regionSelected(_ sender: UIButton) {
-        let selectedRegion = regions[sender.tag]
-        viewModel.addRegion(selectedRegion)
-        dismiss(animated: true)
-    }
+    
+    //MARK: - UI
 }

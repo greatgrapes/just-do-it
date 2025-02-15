@@ -9,7 +9,7 @@ import UIKit
 
 final class WorldClockViewController: UIViewController {
     
-    private let viewModel = WorldClockViewModel()
+//    private let viewModel = WorldClockViewModel()
     
     lazy var editButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(editButtonTapped))
@@ -89,7 +89,7 @@ final class WorldClockViewController: UIViewController {
     @objc func plusButtonTapped() {
         print(#function)
       //TODO: 도시선택 바텀시트 검색창구현
-        let regionPickerVC = RegionPickerViewController(viewModel: viewModel)
+        let regionPickerVC = UINavigationController(rootViewController: RegionPickerViewController())
         present(regionPickerVC, animated: true)
     }
     

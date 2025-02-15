@@ -89,7 +89,7 @@ class WorldClockTableViewCell: UITableViewCell {
     }
     
     private func setData() {
-        
+        // 추후 current, region, clock Label데이터 들어가야함.
     }
     
     
