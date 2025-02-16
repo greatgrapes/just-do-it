@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C3C9A842D6249E500B642F1 /* RegionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C9A832D6249E500B642F1 /* RegionTableViewCell.swift */; };
 		4CDE741A2D5F585200F2AFCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE74132D5F585200F2AFCF /* Assets.xcassets */; };
 		4CDE741C2D5F585200F2AFCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE74162D5F585200F2AFCF /* LaunchScreen.storyboard */; };
 		4CDE741D2D5F585200F2AFCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDE74122D5F585200F2AFCF /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		4C18F2C02D5F54C400FE47F5 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C3C9A832D6249E500B642F1 /* RegionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionTableViewCell.swift; sourceTree = "<group>"; };
 		4CDE74122D5F585200F2AFCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CDE74132D5F585200F2AFCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CDE74142D5F585200F2AFCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				4CDE742C2D5F8E1E00F2AFCF /* WorldClockTableViewCell.swift */,
+				4C3C9A832D6249E500B642F1 /* RegionTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				4CDE74312D5FA06E00F2AFCF /* Region.swift in Sources */,
 				4CDE741D2D5F585200F2AFCF /* AppDelegate.swift in Sources */,
 				4CDE74282D5F5A8200F2AFCF /* StopWatchViewController.swift in Sources */,
+				4C3C9A842D6249E500B642F1 /* RegionTableViewCell.swift in Sources */,
 				4CDE74242D5F5A2400F2AFCF /* WorldClockViewController.swift in Sources */,
 				4CDE74262D5F5A7100F2AFCF /* AlarmViewController.swift in Sources */,
 				4CDE742A2D5F5A9100F2AFCF /* TimerViewController.swift in Sources */,
