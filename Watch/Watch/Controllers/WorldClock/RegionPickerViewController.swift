@@ -10,7 +10,28 @@ import UIKit
 class RegionPickerViewController: UIViewController {
     
     //MARK: - Properties
-    let array = ["괌","과테말라 시티","구스타비아","그리트비켄"]
+    let cities = [
+        ("괌", "괌"),
+        ("과테말라 시티", "과테말라"),
+        ("구스타비아", "생 바르텔레미"),
+        ("그리트비켄", "사우스 조지아 및 사우스 샌드위치 제도"),
+        ("뉴욕", "미국"),
+        ("런던", "영국"),
+        ("파리", "프랑스"),
+        ("도쿄", "일본"),
+        ("베를린", "독일"),
+        ("시드니", "호주"),
+        ("상파울루", "브라질"),
+        ("케이프타운", "남아프리카 공화국"),
+        ("모스크바", "러시아"),
+        ("서울", "대한민국"),
+        ("베이징", "중국"),
+        ("방콕", "태국"),
+        ("마닐라", "필리핀"),
+        ("두바이", "아랍에미리트"),
+        ("싱가포르", "싱가포르"),
+        ("토론토", "캐나다")
+    ]
     
     lazy var regionTableView: UITableView = {
         let table = UITableView()
@@ -75,7 +96,7 @@ extension RegionPickerViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        array.count
+        cities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,8 +104,12 @@ extension RegionPickerViewController: UITableViewDelegate, UITableViewDataSource
             return UITableViewCell()
         }
         
+        let city = cities[indexPath.row].0
+        let country = cities[indexPath.row].1
+        
+        
         // indexPath.row를 사용해서 데이터를 전달
-        cell.setData(mock: array[indexPath.row])
+        cell.setData(city: city, country: country)
         return cell
     }
     

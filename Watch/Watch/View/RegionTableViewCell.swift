@@ -12,8 +12,22 @@ class RegionTableViewCell: UITableViewCell {
     
     static let id = "RegionTableViewCell"
     
+    var horizonStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 3
+        return stack
+    }()
  
-    var regionLabel: UILabel = {
+    var cityLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 12)
+        return label
+    }()
+    
+    var countryLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         label.textColor = .white
@@ -49,21 +63,22 @@ class RegionTableViewCell: UITableViewCell {
     private func setupUI() {
         self.backgroundColor = .black
   
-        self.addSubview(regionLabel)
+        self.addSubview(horizonStackView)
+        horizonStackView.addArrangedSubview(cityLabel)
+        horizonStackView.addArrangedSubview(countryLabel)
  
         NSLayoutConstraint.activate([
-            regionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
-            regionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            regionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -17),
-            regionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            horizonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
+            horizonStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
     
-        regionLabel.translatesAutoresizingMaskIntoConstraints = false
+        horizonStackView.translatesAutoresizingMaskIntoConstraints = false
 
     }
     
-    func setData(mock: String) {
-        regionLabel.text = mock
+    func setData(city: String, country: String) {
+        cityLabel.text = city + ", "
+        countryLabel.text = country
     }
     
     
