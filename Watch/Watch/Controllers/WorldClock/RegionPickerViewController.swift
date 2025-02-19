@@ -10,6 +10,7 @@ import UIKit
 class RegionPickerViewController: UIViewController {
     
     //MARK: - Properties
+    //TODO 추후 데이터관리
     let cities = [
         ("괌", "괌"),
         ("과테말라 시티", "과테말라"),
@@ -33,6 +34,14 @@ class RegionPickerViewController: UIViewController {
         ("토론토", "캐나다")
     ]
     
+    let hangulInitialList = [
+        "ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ",
+        "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"
+    ]
+    
+    var groupedCities: [String: [(String, String)]] = [:]
+    var sectionTitles: [String] = []
+
     lazy var regionTableView: UITableView = {
         let table = UITableView()
         table.delegate = self
@@ -42,36 +51,43 @@ class RegionPickerViewController: UIViewController {
         table.separatorStyle = .singleLine
         table.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         table.separatorInsetReference = .fromAutomaticInsets
-        table.separatorColor = .gray
+        table.separatorColor = .white
         return table
     }()
     
-
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
         makeSearchBar()
         setupUI()
+        groupCitiesByInitial()
     }
-
+    
+    private func groupCitiesByInitial() {
+        groupedCities.removeAll()
+        
+        for city in cities {
+            let initial = getInitialConsonant(city.0.first!)
+            if groupedCities[initial] == nil {
+                groupedCities[initial] = []
+            }
+            groupedCities[initial]?.append(city)
+        }
+        
+        sectionTitles = groupedCities.keys.sorted()
+    }
+    
     private func makeSearchBar() {
-        // SearchBar 핵심구현부
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "검색"
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        // 색상 설정
         searchController.searchBar.tintColor = .orange
-        // 취소키설정
         searchController.searchBar.setValue("취소", forKey: "CancelButtonText")
         searchController.searchBar.showsCancelButton = true
-      
-        // nav설정
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
-     
-        // Title 및 Title 색상 설정
         self.navigationItem.title = "도시 선택"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
@@ -87,16 +103,43 @@ class RegionPickerViewController: UIViewController {
             regionTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    //MARK: - Helpers
+    private func isKoreanCharacter(_ character: Character) -> Bool {
+        guard let scalar = character.unicodeScalars.first else { return false }
+        return (UnicodeScalar("가")...UnicodeScalar("힣")).contains(scalar)
+    }
+    
+    private func getInitialConsonant(_ character: Character) -> String {
+        if !isKoreanCharacter(character) {
+            return character.uppercased()
+        }
+
+        let hangulBase: UInt32 = 44032 // "가"의 유니코드 값
+        let unicodeScalar = character.unicodeScalars.first!
+        let value = unicodeScalar.value - hangulBase
+
+        let initialList = hangulInitialList
+        let index = Int(value / 588) // 초성 인덱스 가져오기
+
+        return initialList[index]
+    }
 }
 
+//MARK: - UITableView Delegate & DataSource
 extension RegionPickerViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        tableView.rowHeight
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionTitles.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitles[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cities.count
+        let key = sectionTitles[section]
+        return groupedCities[key]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,13 +147,22 @@ extension RegionPickerViewController: UITableViewDelegate, UITableViewDataSource
             return UITableViewCell()
         }
         
-        let city = cities[indexPath.row].0
-        let country = cities[indexPath.row].1
+        let sectionKey = sectionTitles[indexPath.section]
+        if let cityList = groupedCities[sectionKey] {
+            let city = cityList[indexPath.row].0
+            let country = cityList[indexPath.row].1
+            cell.setData(city: city, country: country)
+        }
         
-        
-        // indexPath.row를 사용해서 데이터를 전달
-        cell.setData(city: city, country: country)
         return cell
     }
     
+    // 섹션 인덱스 (오른쪽 ㄱㄴㄷㄹ 인덱스 표시)
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return sectionTitles
+    }
+    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return sectionTitles.firstIndex(of: title) ?? 0
+    }
 }
