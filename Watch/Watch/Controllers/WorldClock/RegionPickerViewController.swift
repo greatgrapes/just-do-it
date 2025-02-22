@@ -47,18 +47,19 @@ class RegionPickerViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.register(RegionTableViewCell.self, forCellReuseIdentifier: RegionTableViewCell.id)
-        table.backgroundColor = .black
+        table.backgroundColor = .modal
         table.separatorStyle = .singleLine
         table.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         table.separatorInsetReference = .fromAutomaticInsets
         table.separatorColor = .white
+        table.sectionIndexColor = .orange
         return table
     }()
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .modal
         makeSearchBar()
         setupUI()
         groupCitiesByInitial()
@@ -80,16 +81,21 @@ class RegionPickerViewController: UIViewController {
     
     private func makeSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.sizeToFit()
         searchController.searchBar.placeholder = "검색"
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.tintColor = .orange
         searchController.searchBar.setValue("취소", forKey: "CancelButtonText")
         searchController.searchBar.showsCancelButton = true
+        
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
+        
         self.navigationItem.title = "도시 선택"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
     }
     
     //MARK: - UI
@@ -128,6 +134,12 @@ class RegionPickerViewController: UIViewController {
 
 //MARK: - UITableView Delegate & DataSource
 extension RegionPickerViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = .lightGray
+            headerView.contentView.backgroundColor = UIColor(named: "ModalColor")
+         }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionTitles.count
@@ -153,6 +165,8 @@ extension RegionPickerViewController: UITableViewDelegate, UITableViewDataSource
             let country = cityList[indexPath.row].1
             cell.setData(city: city, country: country)
         }
+        
+        
         
         return cell
     }

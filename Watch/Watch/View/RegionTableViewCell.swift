@@ -61,7 +61,8 @@ class RegionTableViewCell: UITableViewCell {
     
     // setup
     private func setupUI() {
-        self.backgroundColor = .black
+        self.backgroundColor = .modal
+        
         self.addSubview(horizonStackView)
         horizonStackView.addArrangedSubviews([
             cityLabel,
