@@ -71,11 +71,13 @@ class WorldClockTableViewCell: UITableViewCell {
     private func setupUI() {
         self.backgroundColor = .black
   
-        self.addSubview(verticalStackView)
-        verticalStackView.addArrangedSubview(currentDateLabel)
-        verticalStackView.addArrangedSubview(regionLabel)
-        
-        self.addSubview(clockLabel)
+        self.addSubviews([
+            verticalStackView,
+            clockLabel
+        ])
+        self.verticalStackView.addArrangedSubviews([
+            currentDateLabel, regionLabel
+        ])
         
         NSLayoutConstraint.activate([
             verticalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),

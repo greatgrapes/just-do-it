@@ -62,11 +62,12 @@ class RegionTableViewCell: UITableViewCell {
     // setup
     private func setupUI() {
         self.backgroundColor = .black
-  
         self.addSubview(horizonStackView)
-        horizonStackView.addArrangedSubview(cityLabel)
-        horizonStackView.addArrangedSubview(countryLabel)
- 
+        horizonStackView.addArrangedSubviews([
+            cityLabel,
+            countryLabel
+        ])
+        
         NSLayoutConstraint.activate([
             horizonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 17),
             horizonStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
